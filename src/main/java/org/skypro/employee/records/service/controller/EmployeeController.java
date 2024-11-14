@@ -1,6 +1,6 @@
 package org.skypro.employee.records.service.controller;
 
-import java.util.List;
+import java.util.Collection;
 import org.skypro.employee.records.service.model.Employee;
 import org.skypro.employee.records.service.service.EmployeeService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmployeeController {
 
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
@@ -34,7 +34,7 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public List<Employee> findAllEmployees() {
+    public Collection<Employee> findAllEmployees() {
         return employeeService.findAll();
     }
 }

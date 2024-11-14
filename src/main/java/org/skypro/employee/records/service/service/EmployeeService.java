@@ -1,6 +1,6 @@
 package org.skypro.employee.records.service.service;
 
-import java.util.List;
+import java.util.Collection;
 import org.skypro.employee.records.service.model.Employee;
 
 public interface EmployeeService {
@@ -11,5 +11,5 @@ public interface EmployeeService {
 
     Employee find(String firstName, String lastName);
 
-    List<Employee> findAll();
+    Collection<Employee> findAll();
 }

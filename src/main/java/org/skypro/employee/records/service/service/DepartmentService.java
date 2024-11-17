@@ -1,5 +1,7 @@
 package org.skypro.employee.records.service.service;
 
+import static java.util.Objects.*;
+
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Optional;
@@ -7,11 +9,11 @@ import org.skypro.employee.records.service.model.Employee;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EmployeeServiceDepartment {
+public class DepartmentService {
 
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
-    public EmployeeServiceDepartment(EmployeeService employeeService) {
+    public DepartmentService(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
@@ -27,15 +29,18 @@ public class EmployeeServiceDepartment {
                               .min(Comparator.comparingInt(Employee::getSalary));
     }
 
-    public Collection<Employee> findAllEmployees(int departmentId) {
-        return employeeService.findAll().stream()
-                              .filter(employee -> employee.getDepartmentId() == departmentId)
-                              .toList();
+    public Collection<Employee> findAllEmployeesWithDivided(Integer departmentId) {
+        if (isNull(departmentId)) {
+            return employeeService.findAll().stream()
+                                  .sorted(Comparator.comparingInt(Employee::getDepartmentId))
+                                  .toList();
+        }
+        return findAllEmployees(departmentId);
     }
 
-    public Collection<Employee> findAllEmployeesWithDivided() {
+    private Collection<Employee> findAllEmployees(int departmentId) {
         return employeeService.findAll().stream()
-                              .sorted(Comparator.comparingInt(Employee::getDepartmentId))
+                              .filter(employee -> employee.getDepartmentId() == departmentId)
                               .toList();
     }
 

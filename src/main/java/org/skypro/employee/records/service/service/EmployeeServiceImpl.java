@@ -21,8 +21,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee add(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    public Employee add(String firstName, String lastName, int salary, int departmentId) {
+
+        Employee employee = new Employee(firstName, lastName, salary, departmentId);
         if (employeeMap.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException();
         }
@@ -35,7 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee remove(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+        Employee employee = new Employee(firstName, lastName, 0, 0);
         if (employeeMap.containsKey(employee.getFullName())) {
             return employeeMap.remove(employee.getFullName());
         }
@@ -44,7 +45,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee find(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+        Employee employee = new Employee(firstName, lastName, 0, 0);
         if (employeeMap.containsKey(employee.getFullName())) {
             return employeeMap.get(employee.getFullName());
         }

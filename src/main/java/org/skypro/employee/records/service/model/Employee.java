@@ -1,6 +1,7 @@
 package org.skypro.employee.records.service.model;
 
 import java.util.Objects;
+import org.apache.commons.lang3.StringUtils;
 
 public class Employee {
 
@@ -10,8 +11,8 @@ public class Employee {
     private final int departmentId;
 
     public Employee(String firstName, String lastName, int salary, int departmentId) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
+        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
         this.salary = salary;
         this.departmentId = departmentId;
     }

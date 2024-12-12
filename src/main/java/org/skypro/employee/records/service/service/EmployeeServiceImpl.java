@@ -1,7 +1,7 @@
 package org.skypro.employee.records.service.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private static final int MAX_POSSIBLE_NUMBER_BY_EMPLOYEES = 10;
+    private static final int MAX_POSSIBLE_NUMBER_BY_EMPLOYEES = 1;
     private final Map<String, Employee> employeeMap;
 
     public EmployeeServiceImpl() {
@@ -58,7 +58,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Collection<Employee> findAll() {
-        return Collections.unmodifiableCollection(employeeMap.values());
+        return new ArrayList<>(employeeMap.values());
     }
-
 }
